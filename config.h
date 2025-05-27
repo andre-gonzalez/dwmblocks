@@ -5,7 +5,7 @@ static const Block blocks[] = {
 	{"",	"dwm_cron",	14400, 0},
 	{"",	"dwm_ufw",	60, 0},
 	/* {"",	"dwm_currency",	14400, 0}, */
-	{"",	"dwm_weather",	14400, 0},
+	{"",	"dwm_weather",	1800, 0},
 	{"",	"dwm_packages",	14400, 13},
 	{"",	"dwm_spotify", 3,  0},
 	{"",	"dwm_systemd_networkd", 5,  0},
