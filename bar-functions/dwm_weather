@@ -6,11 +6,9 @@
 
 # Dependencies: curl
 
-# Change the value of LOCATION to match your city
 dwm_weather() {
 
-		# LOCATION=Rio+de+Janeiro+Brazil
-		DATA=$(curl -s 'wttr.in/?format=%c%C+%t\n&lang=pt-br')
+		DATA=$(curl -s 'wttr.in/?format=%c%C+%t\n')
 		echo "$DATA"
 }
 
