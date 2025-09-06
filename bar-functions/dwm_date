@@ -9,10 +9,8 @@ dwm_date () {
     printf "%s"
     if [ "$IDENTIFIER" = "unicode" ]; then
         printf "󰃮 %s" "$(date "+%a %Y-%m-%d %R") "
-        printf "| %s" "$(TZ=America/Sao_Paulo date +"%H:%M") BR"
     else
         printf "󰃮 %s" "$(date "+%a %Y-%m-%d %R") "
-        printf "| %s" "$(TZ=America/Sao_Paulo date +"%H:%M") BR"
     fi
     printf "%s\n"
 }
