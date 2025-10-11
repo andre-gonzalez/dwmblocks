@@ -13,7 +13,7 @@ dwm_resources () {
 	# MEMTOT=$(echo $free_output | awk '{print $2}')
 
 	# Gather CPU usage
-	CPU=$(top -bn1 | awk '/Cpu/ {print $2}')%
+	CPU=$(top -bn1 | awk '/Cpu/ {print int($2)}')%
 
 	# Determine filesystem type and collect storage usage
     filesystem=$(df -Th /home | awk 'FNR == 2{print $2}')
@@ -28,7 +28,7 @@ dwm_resources () {
     fi
 
 	# Display the output
-	printf " %s| %s| %sGB\n" "$MEMUSED" "$CPU" "$STOUSED"
+	printf " %s    %s    %sGB\n" "$MEMUSED" "$CPU" "$STOUSED"
 
 	# if [ $(( STOTOT - STOUSED )) -lt 15 ]; then
 	# 		notify-send "HD cheio"
