@@ -19,16 +19,21 @@ dwm_spotify () {
 
     if [ "$PLAYER" = "spotify" ] || [ "$PLAYER" = "spotifyd" ] || [ "$PLAYER" = "spotify_player" ]; then
         STATUS=$(playerctl metadata --format "{{status}}")
-		INFO=$(playerctl metadata --format "{{artist}} - {{title}}")
+		ARTIST=$(playerctl metadata --format "{{artist}}")
+		TITLE=$(playerctl metadata --format "{{title}}")
 
 			if [ "$STATUS" = "Playing" ]; then
-				STATUS="▶ "
+				STATUS="▶"
 			else
-				STATUS=" "
+				STATUS=""
 			fi
 
 
-			printf "%s %s" "$STATUS" "$INFO"
+			if [ -z "$ARTIST" ]; then
+				printf "%s %s" "$STATUS" "$TITLE"
+			else
+				printf "%s %s - %s" "$STATUS" "$ARTIST" "$TITLE"
+			fi
 	fi
 }
 
