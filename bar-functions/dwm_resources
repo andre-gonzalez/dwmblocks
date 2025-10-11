@@ -12,7 +12,7 @@ dwm_resources () {
     filesystem=$(df -Th /home | awk 'FNR == 2{print $2}')
 	# Used and total memory
 	MEMUSED=$(echo $free_output | awk '{print $3}')
-	MEMTOT=$(echo $free_output | awk '{print $2}')
+	# MEMTOT=$(echo $free_output | awk '{print $2}')
 	# CPU temperature
 	CPU=$(top -bn1 | grep Cpu | awk '{print $2}')%
 	#CPU=$(sysctl -n hw.sensors.cpu0.temp0 | cut -d. -f1)
@@ -29,9 +29,9 @@ dwm_resources () {
 
 	printf "%s"
 	if [ "$IDENTIFIER" = "unicode" ]; then
-		printf " %s/%s| %s| %s/%s" "$MEMUSED" "$MEMTOT" "$CPU" "$STOUSED" "$STOTOT"
+		printf " %s| %s| %s" "$MEMUSED" "$CPU" "$STOUSED"
 	else
-		printf " %s/%s| %s| %sG/%sG" "$MEMUSED" "$MEMTOT" "$CPU" "$STOUSED" "$STOTOT"
+		printf " %s| %s| %sG" "$MEMUSED" "$CPU" "$STOUSED"
 	fi
 	printf "%s\n"
 
