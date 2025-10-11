@@ -2,6 +2,7 @@
 static const Block blocks[] = {
 	/*Icon*/	/*Command*/		/*Update Interval*/	/*Update Signal*/
 	{"",	"dwm_countdown", 1,  0},
+	{"",	"dwm_vpn", 5,  0},
 	{"",	"dwm_spotify", 3,  0},
 	{"",	"dwm_bluetooth", 60, 12},
 	{"",	"dwm_systemd_networkd", 5,  0},
@@ -13,7 +14,6 @@ static const Block blocks[] = {
 	{"",	"dwm_backlight", 0, 11},
 	{"",	"dwm_do_not_disturb", 0,  14},
 	{"",	"dwm_date", 30,  0},
-	/* {"",	"dwm_vpn", 5,  0}, */
 	/* {"",	"dwm_currency",	14400, 0}, */
 	/* {"⌨", "sb-kbselect", 0, 30}, */
 	// {"",	"dwm_cron",	14400, 0},
