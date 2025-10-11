@@ -8,15 +8,15 @@ dwm_bluetooth () {
 		if [ "$connected" = "yes" ]; then
 				if [ "$name" = "LE_WH-1000XM3" ] || [ "$name" = "WH-1000XM3" ]; then
 						printf "󰂰 XM3 $battery%%"
-				# elif ["$name" = "Jabra Elite 3"]; then
-				# 		printf "󰂰 Jabra $battery%%"
+				elif ["$name" = "Jabra Elite 3"]; then
+						printf "󰂰 Jabra $battery%%"
 				else
 						printf "󰂰 $name $battery%%"
 				fi
-		elif [ "$powered" = "yes" ]; then
-						printf "󰂯"
-		else
-						printf "󰂲"
+		# elif [ "$powered" = "yes" ]; then
+		# 				printf "󰂯"
+		# else
+		# 				printf "󰂲"
 		fi
 
 		printf "%s\n" "$SEP2"

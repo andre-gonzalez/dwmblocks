@@ -5,9 +5,9 @@ disturb () {
 status="$(dunstctl is-paused)"
 
 if [ "$status" = "false" ]; then
-		echo " "
+		echo ""
 elif [ "$status" = "true" ]; then
-		echo " "
+		echo ""
 fi
 
 }

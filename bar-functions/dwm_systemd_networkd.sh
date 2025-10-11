@@ -5,12 +5,24 @@ status=$(iwctl station $interface show | grep State | grep -o 'connected\|discon
 wired=$(ip -s link show enp2s0 | grep -c 'state UP')
 wired_enp0s20f0u2c2=$(ip -s link show enp0s20f0u2c2 | grep -c 'state UP')
 
-if [ "$status" = "connected" ]; then
+if [ "$wired_enp2s0" = 1 ] || [ "$wired_enp0s20f0u2c2" = 1 ]; then
+    echo "󰈁"
+elif [ "$status" = "connected" ]; then
 		network=$(iwctl station wlan0 show | grep -Po 'Connected network \K.*' | awk '{$1=$1;print}')
 		strength=$(iw dev "$interface" link | awk '/signal/ {gsub("-",""); print $2}')
-		echo " ""$network" "$strength%"
-elif [ "$wired_enp2s0" = 1 ] || [ "$wired_enp0s20f0u2c2" = 1 ]; then
-    echo "󰈁 Ethernet"
+		if [ "$strength" -ge 80 ]; then
+			echo "󰤨"" $network"
+		elif [ "$strength" -le 20 ]; then
+			echo "󰤯"" $network"
+		elif [ "$strength" -le 40 ]; then
+			echo "󰤟"" $network"
+		elif [ "$strength" -le 60 ]; then
+			echo "󰤢"" $network"
+		elif [ "$strength" -le 80 ]; then
+			echo "󰤥"" $network"
+		else
+			echo "󰤠"" $network"
+		fi
 else
-		echo " OFFLINE"
+	echo "󰤭"
 fi

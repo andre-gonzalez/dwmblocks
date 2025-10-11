@@ -9,7 +9,7 @@ STATUS=$(cat /sys/class/power_supply/$BAT/status)
 if [ "$CHARGE" -ge 98 ]; then
 	ICON=""  # full battery
 elif [ "$CHARGE" -le 20 ]; then
-	ICON=""  # very low
+	ICON="  $CHARGE"  # very low
 elif [ "$CHARGE" -le 40 ]; then
 	ICON=""  # low
 elif [ "$CHARGE" -le 60 ]; then

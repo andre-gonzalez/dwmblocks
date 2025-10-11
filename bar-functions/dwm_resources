@@ -28,7 +28,7 @@ dwm_resources () {
     fi
 
 	# Display the output
-	printf " %s    %s    %sGB\n" "$MEMUSED" "$CPU" "$STOUSED"
+	printf " %sGB ·  %s ·  %s\n" "$STOUSED" "$MEMUSED" "$CPU"
 
 	# if [ $(( STOTOT - STOUSED )) -lt 15 ]; then
 	# 		notify-send "HD cheio"
