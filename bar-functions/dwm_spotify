@@ -18,35 +18,18 @@ dwm_spotify () {
     fi
 
     if [ "$PLAYER" = "spotify" ] || [ "$PLAYER" = "spotifyd" ] || [ "$PLAYER" = "spotify_player" ]; then
-        ARTIST=$(playerctl metadata artist)
-        TRACK=$(playerctl metadata title)
-        # POSITION=$(playerctl position | sed 's/..\{6\}$//')
-        # DURATION=$(playerctl metadata mpris:length | sed 's/.\{6\}$//')
-        STATUS=$(playerctl status)
-        # SHUFFLE=$(playerctl shuffle)
+        STATUS=$(playerctl metadata --format "{{status}}")
+		INFO=$(playerctl metadata --format "{{artist}} - {{title}}")
 
 			if [ "$STATUS" = "Playing" ]; then
-				STATUS=" "
-			else
 				STATUS="▶ "
+			else
+				STATUS=" "
 			fi
 
-			# if [ "$SHUFFLE" = "On" ]; then
-			# 	SHUFFLE="󰒟"
-			# else
-			# 	SHUFFLE=""
-			# fi
 
-				if [ "$PLAYER" = "spotify" ]; then
-					printf "%s %s - %s" "$STATUS" "$ARTIST" "$TRACK"
-					# printf "%0d:%02d" $((DURATION%3600/60)) $((DURATION%60))
-				else
-					printf "%s %s - %s" "$STATUS" "$ARTIST" "$TRACK"
-					# printf "%0d:%02d/" $((POSITION%3600/60)) $((POSITION%60))
-					# printf "%0d:%02d" $((DURATION%3600/60)) $((DURATION%60))
-					# printf "%s%s\n" "$SHUFFLE" "$SEP2"
-				fi
-		fi
+			printf "%s %s" "$STATUS" "$INFO"
+	fi
 }
 
 dwm_spotify
