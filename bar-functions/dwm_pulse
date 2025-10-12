@@ -1,37 +1,31 @@
 #!/bin/sh
 
-# A dwm_bar function to show the master volume of PulseAudio
-# Joe Standring <git@joestandring.com>
-# GNU GPLv3
-
 # Dependencies: pamixer
 
-dwm_pulse () {
-    VOL=$(pamixer --get-volume)
+FLAG_FILE="/tmp/dwm_volume_show"
 
-    printf "%s"
-    if [ "$IDENTIFIER" = "unicode" ]; then
-        if [ "$VOL" = "muted" ] || [ "$VOL" -eq 0 ]; then
-            printf "󰸈"
-        elif [ "$VOL" -gt 0 ] && [ "$VOL" -le 33 ]; then
-            printf "󰖀 %s%%" "$VOL"
-        elif [ "$VOL" -gt 33 ] && [ "$VOL" -le 66 ]; then
-            printf "󰕾 %s%%" "$VOL"
-        else
-            printf " %s%%" "$VOL"
-        fi
+dwm_pulse() {
+    # Get current volume and mute status
+    VOL=$(pamixer --get-volume)
+    MUTED=$(pamixer --get-mute)
+
+    # Determine icon
+    if [ "$MUTED" = "true" ] || [ "$VOL" -eq 0 ]; then
+        ICON="󰸈"
+    elif [ "$VOL" -le 33 ]; then
+        ICON="󰖀"
+    elif [ "$VOL" -le 66 ]; then
+        ICON="󰕾"
     else
-        if [ "$VOL" = "muted" ] || [ "$VOL" -eq 0 ]; then
-            printf "󰸈"
-        elif [ "$VOL" -gt 0 ] && [ "$VOL" -le 33 ]; then
-            printf "󰖀 %s%%" "$VOL"
-        elif [ "$VOL" -gt 33 ] && [ "$VOL" -le 66 ]; then
-            printf "󰕾 %s%%" "$VOL"
-        else
-            printf " %s%%" "$VOL"
-        fi
+        ICON=""
     fi
-    printf "%s\n"
+
+    # Show percentage only if flag file exists
+    if [ -f "$FLAG_FILE" ]; then
+        printf "%s %s%%\n" "$ICON" "$VOL"
+    else
+        printf "%s\n" "$ICON"
+    fi
 }
 
 dwm_pulse
